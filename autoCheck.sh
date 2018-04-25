@@ -23,13 +23,18 @@ if [ -f ./result$labNumber.txt ]; then
 	rm result$labNumber.txt
 fi
 
-#Main program loop (for each file in the lab)
-for file in Labs/$labDir/56000*/$labNumber.c
+#main program loop (for each file in the lab)
+for file in Labs/$labDir/*/$labNumber.c
 do
+   studentID=${file//"Labs/$labDir"/}  #cut the front of the path
+   studentID=${studentID//"$labNumber.c"/}  #cut the end of the path
+   studentID=${studentID//[!0-9]/}  #extract student ID
+
    if [[ -f "$file"  ]]; then  #if we find a source file
         if (gcc $file &>/dev/null); then  #if compilation is successful (&>/dev/null mute the error output from gcc)      
-            echo -n "$compiled" >> result$labNumber.txt 
-            echo -n "${file:10:6};" >> result$labNumber.txt  #write studentID to results
+            echo -n "$compiled" >> result$labNumber.txt
+	    
+            echo -n "$studentID;" >> result$labNumber.txt  #write studentID to results
             result=$(./a.out)  #get result from running the program
             if [[ "$result" == $answer ]];then
                 echo "$file : correct"
@@ -43,7 +48,7 @@ do
         
         else
             echo "$file : Compile error"  #compilation fails
-	    echo -n "${file:10:6};" >> result$labNumber.txt
+	    echo -n "$studentID;" >> result$labNumber.txt #write studentID to results
 	    echo "1" >> result$labNumber.txt  #append score of one
 
         fi
