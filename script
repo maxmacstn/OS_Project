@@ -1,0 +1,29 @@
+#!/bin/bash
+
+labNumber="Lab11"
+answer="20"
+labDir=${labNumber:0:4}  #substring labNumber to "Lab1"
+
+for file in Labs/$labDir/56000*/$labNumber.c
+do
+   if [[ -f "$file"  ]]; then
+        # process the file with name in "$file" here
+        if (gcc $file &>/dev/null); then   #&>/dev/null mute the error output from gcc        
+            echo -n "$compiled" >> result.txt
+            echo -n ";" >> result.txt
+            result=$(./a.out)
+            if [[ "$result" == $answer ]];then
+                echo "$file : correct"
+                echo "correct" >> result.txt
+            else
+                echo "$file : wrong"
+                echo "wrong" >> result.txt
+            fi   
+        rm a.out
+        
+        else
+        echo "$file : Compile error"
+
+        fi
+   fi
+done
