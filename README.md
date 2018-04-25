@@ -1,1 +1,3 @@
-OSProject
+# OS Project
+
+Simple grader system
