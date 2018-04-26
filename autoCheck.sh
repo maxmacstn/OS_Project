@@ -26,9 +26,8 @@ fi
 #main program loop (for each file in the lab)
 for file in Labs/$labDir/*/$labNumber.c
 do
-   studentID=${file//"Labs/$labDir"/}  #cut the front of the path
-   studentID=${studentID//"$labNumber.c"/}  #cut the end of the path
-   studentID=${studentID//[!0-9]/}  #extract student ID
+
+   studentID=$(basename $(dirname $file))  #Get the studentID from file path 
 
    if [[ -f "$file"  ]]; then  #if we find a source file
         if (gcc $file &>/dev/null); then  #if compilation is successful (&>/dev/null mute the error output from gcc)      
