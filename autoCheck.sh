@@ -4,7 +4,7 @@
 # A shell script done for self-study of UNIX shell scripting.
 #------------------------------------------------------------
 
-usageText=$'Usage: ./autoCheck LabXY correctOutput where,\nX is lab number and Y is question number.'  #usage prompt
+usageText=$'Usage: ./autoCheck Lab{X}{Y} correctOutput where,\n{X} is lab number and {Y} is question number.'  #usage prompt
 labNumber=$1  #first argument
 answer=$2  #second argument
 labDir=${labNumber:0:4}  #substring labNumber to "LabX"
@@ -31,8 +31,6 @@ do
 
    if [[ -f "$file"  ]]; then  #if we find a source file
         if (gcc $file &>/dev/null); then  #if compilation is successful (&>/dev/null mute the error output from gcc)      
-            echo -n "$compiled" >> result$labNumber.txt
-	    
             echo -n "$studentID;" >> result$labNumber.txt  #write studentID to results
             result=$(./a.out)  #get result from running the program
             if [[ "$result" == $answer ]];then
