@@ -13,7 +13,7 @@ labDir=${labNumber:0:4}  #substring labNumber to "LabX"
 if [ "$1" = "-help" ]; then
 	echo "$usageText"
 	exit 1
-elif [ "$#" -lt 2 ]; then
+elif [ "$#" -ne 2 ]; then
 	echo "Error: Invaild arguments. use -help for more information."
 	exit 1
 fi
