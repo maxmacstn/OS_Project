@@ -6,4 +6,5 @@ Simple C programming lab grading automation tool.
 2. Dan Suwanseree 59090003
 3. Kongpop Vorarittinapa 59090006
 4. Poonyawee Visetputtasart 59090023
-5. Sitinut Waisara 59090030
+5. Shouh Yann Mo 59090028 
+6. Sitinut Waisara 59090030
